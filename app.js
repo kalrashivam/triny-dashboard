@@ -30,6 +30,14 @@ app.get('/admin', (req, res) => {
     res.sendFile(path.join(publicPath + '/admin.html'));
 });
 
+app.get("/admin", (req, res) => {
+  res.sendFile(path.join(publicPath + "/user.html"));
+});
+
+app.get("/register", (req, res) => {
+    res.sendFile(path.join(publicPath + "/register.html"));
+});
+
 app.get('/fbwebhook', (req, res) => {
     console.log(req.body);
     if (req.query['hub.mode'] && req.query['hub.verify_token'] === 'VERIFY_TOKEN') {
