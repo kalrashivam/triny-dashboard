@@ -21,6 +21,7 @@ app.get('/', (req,res) => {
 })
 
 app.get('/fbwebhook', (req, res) => {
+    console.log(req.body);
     if (req.query['hub.mode'] && req.query['hub.verify_token'] === 'VERIFY_TOKEN') {
         res.status(200).send(req.query['hub.challenge']);
     } else {
@@ -28,7 +29,8 @@ app.get('/fbwebhook', (req, res) => {
     }
 });
 
-app.post('/fbwebhook', (req,res) => {
+app.post('/fbwebhook', (req, res) => {
+    console.log(req.body);
     if (req.body.object === 'page') {
         req.body.entry.forEach((entry) => {
             entry.messaging.forEach((event) => {
@@ -82,6 +84,7 @@ function processMessage(event) {
 
 
 app.post('/fordf', (req, res) => {
+    console.log(req.body);
 
     console.log('*** Call from DialogFlow ***');
 
