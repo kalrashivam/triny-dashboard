@@ -1,13 +1,15 @@
 'use strict'
 const PAGE_ACCESS_TOKEN =
-  "EAADpaZAvQkBEBAJnWM1nbDcjCT0bm61wzMwNNZCcoL35eSIA3DvbqSgyYNEKxxAFZB0tUgdhXZBEgtVVcDbVC9msmKMxaXDaQf5U2Wu3lk5vZBDUwDHsz5PUEKzy5VqbbBldNAsKIusxmNpTrNXuwdQil71eUdGsUOhMNhc7KrQZDZD";
+  "EAADpaZAvQkBEBAOLm1UegMEaNdkoaeIzrY6LRsca8vzPM5bgQfdttEcIAnF1AVDRPEqHEqTv8rbYy9GWl6w4yEHAEdfStEJHlxa1wrX9HoGL8svewHZCU2s47tGwIdLK3dimeKpSzSGrcSNwyx4KVqaZAYGKB0K9hEKrAAzxgZDZD";
 
 var port = process.env.PORT || 3000;
 
 const express = require('express');
+const path = require("path");
 const bodyparser = require('body-parser');
 const request = require('request');
 const apiai = require('apiai');
+var hbs = require("handlebars");
 
 const app = express();
 const apiaiapp = apiai("6ed416310a72408095ddd4bae851de2a");
@@ -16,9 +18,13 @@ app.listen(port, () => {
     console.log(`running on port no. ${port}`);
 })
 
+const publicPath = path.join(__dirname, "/public");
+app.use(express.static(publicPath));
+app.set("viewengine", "hbs");
+
 app.get('/', (req,res) => {
-    res.send('webhook working in the background');
-})
+    res.sendfile(path.join(publicPath + '/index.html'));
+});
 
 app.get('/fbwebhook', (req, res) => {
     console.log(req.body);

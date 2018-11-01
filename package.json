@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js"
   },
   "author": "shivam",
   "license": "ISC",
@@ -12,10 +12,9 @@
     "apiai": "^4.0.3",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
+    "handlebars": "^4.0.12",
     "mongoose": "^5.3.7",
+    "path": "^0.12.7",
     "request": "^2.88.0"
-  },
-  "scripts":{
-   "start": "node app.js" 
   }
 }
