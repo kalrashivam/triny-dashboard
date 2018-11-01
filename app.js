@@ -2,7 +2,7 @@
 const PAGE_ACCESS_TOKEN =
   "EAADpaZAvQkBEBAJnWM1nbDcjCT0bm61wzMwNNZCcoL35eSIA3DvbqSgyYNEKxxAFZB0tUgdhXZBEgtVVcDbVC9msmKMxaXDaQf5U2Wu3lk5vZBDUwDHsz5PUEKzy5VqbbBldNAsKIusxmNpTrNXuwdQil71eUdGsUOhMNhc7KrQZDZD";
 
-var port = process.env.port || 3000;
+var port = process.env.PORT || 3000;
 
 const express = require('express');
 const bodyparser = require('body-parser');
