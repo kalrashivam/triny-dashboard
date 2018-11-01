@@ -1,5 +1,6 @@
 'use strict'
-const PAGE_ACCESS_TOKEN ='';
+const PAGE_ACCESS_TOKEN =
+  "EAADpaZAvQkBEBAJnWM1nbDcjCT0bm61wzMwNNZCcoL35eSIA3DvbqSgyYNEKxxAFZB0tUgdhXZBEgtVVcDbVC9msmKMxaXDaQf5U2Wu3lk5vZBDUwDHsz5PUEKzy5VqbbBldNAsKIusxmNpTrNXuwdQil71eUdGsUOhMNhc7KrQZDZD";
 
 var port = process.env.port || 3000;
 
@@ -8,8 +9,8 @@ const bodyparser = require('body-parser');
 const request = require('request');
 const apiai = require('apiai');
 
-app = express();
-const apiaiapp = apiai("");
+const app = express();
+const apiaiapp = apiai("6ed416310a72408095ddd4bae851de2a");
 
 app.listen(port, () => {
     console.log(`running on port no. ${port}`);
@@ -45,13 +46,11 @@ function processMessage(event) {
     let text = event.message.text;
 
     let apiai = apiaiApp.textRequest(text, {
-        sessionId: 'institutebot'
+        sessionId: 'broadcastbot'
     });
 
 
         apiai.on('response', (response) => {
-
-                //Send the response back to FB Messenger
             console.log(response);
             let aiText = response.result.fulfillment.speech;
             request({
@@ -86,7 +85,7 @@ app.post('/fordf', (req, res) => {
 
     console.log('*** Call from DialogFlow ***');
 
-    if (req.body.result.action === 'broadcast message') {
+    if (req.body.result.action === 'broadcast_message') {
 
         // Extract the parameter : BusStop
         msg = "hello there";
