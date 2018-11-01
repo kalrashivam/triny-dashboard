@@ -23,7 +23,11 @@ app.use(express.static(publicPath));
 app.set("viewengine", "hbs");
 
 app.get('/', (req,res) => {
-    res.sendfile(path.join(publicPath + '/index.html'));
+    res.sendFile(path.join(publicPath + '/index.html'));
+});
+
+app.get('/admin', (req, res) => {
+    res.sendFile(path.join(publicPath + '/admin.html'));
 });
 
 app.get('/fbwebhook', (req, res) => {
