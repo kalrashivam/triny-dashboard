@@ -30,16 +30,20 @@ app.get('/admin', (req, res) => {
     res.sendFile(path.join(publicPath + '/admin.html'));
 });
 
-app.get("/admin", (req, res) => {
+app.post("/admin", (req, res) => {
   res.sendFile(path.join(publicPath + "/user.html"));
 });
 
 app.get("/register", (req, res) => {
+    return text.toUpperCase();
+});
+
+app.use((req, res, next) => {
     res.sendFile(path.join(publicPath + "/register.html"));
 });
 
 app.get('/fbwebhook', (req, res) => {
-    console.log(req.body);
+    console.log(req);
     if (req.query['hub.mode'] && req.query['hub.verify_token'] === 'VERIFY_TOKEN') {
         res.status(200).send(req.query['hub.challenge']);
     } else {
@@ -48,7 +52,7 @@ app.get('/fbwebhook', (req, res) => {
 });
 
 app.post('/fbwebhook', (req, res) => {
-    console.log(req.body);
+    console.log(req);
     if (req.body.object === 'page') {
         req.body.entry.forEach((entry) => {
             entry.messaging.forEach((event) => {
